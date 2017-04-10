@@ -672,12 +672,6 @@ public class FreeDrawView extends View implements View.OnTouchListener {
                         mWidth, mHeight, Bitmap.Config.ARGB_8888);
                 mCanvas = new Canvas(mBitmap);
 
-
-                Log.i("pintando","doInBackground 0");
-                Save imageSave =new Save();
-                imageSave.SaveImage(context, mBitmap);
-
-
             } catch (Exception e) {
                 e.printStackTrace();
                 cancel(true);
@@ -703,10 +697,12 @@ public class FreeDrawView extends View implements View.OnTouchListener {
 
             if (mListener != null) {
                 mListener.onDrawCreated(mBitmap);
+                Log.i("pintando","doInBackground 0");
+                Save imageSave =new Save();
+                imageSave.SaveImage(context, mBitmap);
             }
         }
     }
-
 
 
     public class Save {
@@ -735,7 +731,7 @@ public class FreeDrawView extends View implements View.OnTouchListener {
                 fOut.flush();
                 fOut.close();
                 MakeSureFileWasCreatedThenMakeAvabile(file);
-                AbleToSave();
+                //AbleToSave();
 
             }
             catch (FileNotFoundException e) {
