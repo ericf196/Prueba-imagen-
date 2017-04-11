@@ -73,7 +73,7 @@ public class FreeDrawView extends View implements View.OnTouchListener {
     // Needed to draw points
     private Paint mFillPaint;
 
-    private Context context;
+    public Context context;
 
     private PathDrawnListener mPathDrawnListener;
     private PathRedoUndoCountChangeListener mPathRedoUndoCountChangeListener;
@@ -711,7 +711,7 @@ public class FreeDrawView extends View implements View.OnTouchListener {
         private String NameOfFile   = "APaintImage";
 
         public void SaveImage(Context context,Bitmap ImageToSave){
-            TheThis = context;
+            context =this.TheThis;
             String file_path = Environment.getExternalStorageDirectory().getAbsolutePath()+NameOfFolder;
             Log.i("pintando",file_path);
             String CurrentDateAndTime= getCurrentDateAndTime();
@@ -730,7 +730,7 @@ public class FreeDrawView extends View implements View.OnTouchListener {
                 Log.i("pintando","existe 1");
                 fOut.flush();
                 fOut.close();
-                MakeSureFileWasCreatedThenMakeAvabile(file);
+                //MakeSureFileWasCreatedThenMakeAvabile(file);
                 //AbleToSave();
 
             }
@@ -776,7 +776,7 @@ public class FreeDrawView extends View implements View.OnTouchListener {
         }
 
         private void AbleToSave() {
-            Toast.makeText(TheThis, "Picture saved be saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Picture saved be saved", Toast.LENGTH_SHORT).show();
 
         }
     }
