@@ -97,14 +97,17 @@ public class FormActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onPathStart() {//Cuando se baja el touch
-        //Log.i("pintando","getUndoCount() "+ String.valueOf(mFreeDrawView.getUndoCount()));
+        Log.i("pintando","getUndoCount() "+ String.valueOf(enabledBtnClearAll()));
+        enabledBtnSend();
     }
 
     @Override
     public void onNewPathDrawn() { //Cuando se levanta el touch
         //Log.i("pintando","getUndoCount() "+ String.valueOf(mFreeDrawView.getUndoCount()));
-        enabledBtnClearAll();
+        //Log.i("pintando","getUndoCount() "+ String.valueOf(mFreeDrawView.getUndoCount()));
         enabledBtnSend();
+        enabledBtnClearAll();
+
     }
 
     @Override
@@ -171,7 +174,7 @@ public class FormActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public boolean enabledBtnSend(){
-        if(!mTextNameOrganization.getText().toString().isEmpty() || !mTextEmail.getText().toString().isEmpty() || !mTextInformation.getText().toString().isEmpty() || enabledBtnClearAll()){
+        if(!mTextNameOrganization.getText().toString().isEmpty() && !mTextEmail.getText().toString().isEmpty() && !mTextInformation.getText().toString().isEmpty() && enabledBtnClearAll()){
             mBtnSend.setEnabled(true);
             return true;
         }else {
@@ -188,18 +191,18 @@ public class FormActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
 
             case R.id.edit_name_organization:
-                //enabledBtnSend();
-                Log.i("pintando","onKey edit_name_organization "+ String.valueOf(event.getAction()==KeyEvent.ACTION_UP));
+                enabledBtnSend();
+                //Log.i("pintando","onKey edit_name_organization "+ String.valueOf(event.getAction()==KeyEvent.ACTION_UP));
                 break;
 
             case R.id.edit_email:
-                Log.i("pintando","onKey edit_email "+ String.valueOf(event.getAction()==KeyEvent.ACTION_UP));
-                //enabledBtnSend();
+                //Log.i("pintando","onKey edit_email "+ String.valueOf(event.getAction()==KeyEvent.ACTION_UP));
+                enabledBtnSend();
                 break;
 
             case R.id.edit_information:
-                Log.i("pintando","onKey edit_information "+ String.valueOf(event.getAction()==KeyEvent.ACTION_UP));
-                //enabledBtnSend();
+                //Log.i("pintando","onKey edit_information "+ String.valueOf(event.getAction()==KeyEvent.ACTION_UP));
+                enabledBtnSend();
                 break;
 
             default:
