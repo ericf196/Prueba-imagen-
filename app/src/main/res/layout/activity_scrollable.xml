@@ -42,7 +42,7 @@
                     android:id="@+id/edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/signature_hint"
+                    android:hint="@string/signature_label"
                     android:inputType="textCapWords"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -57,7 +57,7 @@
                     android:id="@+id/edit_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/age_hint"
+                    android:hint="@string/organization_label"
                     android:inputType="numberDecimal"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -152,6 +152,7 @@
                 android:padding="8dp"
                 android:text="This should be enough to show how this works within scrollable views"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>

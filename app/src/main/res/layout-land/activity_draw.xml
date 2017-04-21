@@ -148,7 +148,7 @@
                     android:textColor="@android:color/white" />
 
                 <Button
-                    android:id="@+id/btn_clear_all"
+                    android:id="@+id/btn_clear_all1"
                     style="@style/Base.Widget.AppCompat.Button.Borderless"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

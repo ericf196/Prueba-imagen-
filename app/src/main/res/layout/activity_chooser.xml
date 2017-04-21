@@ -10,11 +10,11 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:text="Draw sample"
+        android:text="Firma"
         android:textColor="@color/white"
         android:textSize="24sp"/>
 
-    <Button
+    <!--<Button
         android:id="@+id/scrollable_sample"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -22,5 +22,5 @@
         android:backgroundTint="@color/colorPrimary"
         android:text="Scrollable sample"
         android:textColor="@color/white"
-        android:textSize="24dp"/>
+        android:textSize="24dp"/>-->
 </LinearLayout>

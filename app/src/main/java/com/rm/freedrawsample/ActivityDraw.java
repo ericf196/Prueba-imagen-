@@ -1,7 +1,15 @@
 package com.rm.freedrawsample;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -9,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,8 +26,15 @@ import com.rm.freedrawview.FreeDrawView;
 import com.rm.freedrawview.PathDrawnListener;
 import com.rm.freedrawview.PathRedoUndoCountChangeListener;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class ActivityDraw extends AppCompatActivity
-        implements View.OnClickListener, SeekBar.OnSeekBarChangeListener,
+        implements View.OnClickListener, /*SeekBar.OnSeekBarChangeListener,*/
         PathRedoUndoCountChangeListener, FreeDrawView.DrawCreatorListener, PathDrawnListener {
 
     private static final int THICKNESS_STEP = 1;
@@ -30,9 +46,9 @@ public class ActivityDraw extends AppCompatActivity
     private static final int ALPHA_MIN = 0;
 
     private FreeDrawView mFreeDrawView;
-    private View mSideView;
+    private View mSideView, mSideView1;
     private Button mBtnRandomColor, mBtnUndo, mBtnRedo, mBtnClearAll;
-    private SeekBar mThicknessBar, mAlphaBar;
+   // private SeekBar mThicknessBar, mAlphaBar;
     private TextView mTxtRedoCount, mTxtUndoCount;
 
     private ImageView mImgScreen;
@@ -45,34 +61,38 @@ public class ActivityDraw extends AppCompatActivity
 
         mImgScreen = (ImageView) findViewById(R.id.img_screen);
 
-        mTxtRedoCount = (TextView) findViewById(R.id.txt_redo_count);
-        mTxtUndoCount = (TextView) findViewById(R.id.txt_undo_count);
+        //mTxtRedoCount = (TextView) findViewById(R.id.txt_redo_count);
+        //mTxtUndoCount = (TextView) findViewById(R.id.txt_undo_count);
 
         mFreeDrawView = (FreeDrawView) findViewById(R.id.free_draw_view);
         mFreeDrawView.setOnPathDrawnListener(this);
-        mFreeDrawView.setPathRedoUndoCountChangeListener(this);
+        //mFreeDrawView.setPathRedoUndoCountChangeListener(this);
 
         mSideView = findViewById(R.id.side_view);
-        mBtnRandomColor = (Button) findViewById(R.id.btn_color);
+        mSideView1 =findViewById(R.id.side_view1);
+        /*mBtnRandomColor = (Button) findViewById(R.id.btn_color);
         mBtnUndo = (Button) findViewById(R.id.btn_undo);
-        mBtnRedo = (Button) findViewById(R.id.btn_redo);
+        mBtnRedo = (Button) findViewById(R.id.btn_redo);*/
         mBtnClearAll = (Button) findViewById(R.id.btn_clear_all);
-        mThicknessBar = (SeekBar) findViewById(R.id.slider_thickness);
-        mAlphaBar = (SeekBar) findViewById(R.id.slider_alpha);
+        /*mThicknessBar = (SeekBar) findViewById(R.id.slider_thickness);
+        mAlphaBar = (SeekBar) findViewById(R.id.slider_alpha);*/
 
-        mBtnRandomColor.setOnClickListener(this);
-        mBtnUndo.setOnClickListener(this);
-        mBtnRedo.setOnClickListener(this);
+        //mBtnRandomColor.setOnClickListener(this);
+        //mBtnUndo.setOnClickListener(this);
+        //mBtnRedo.setOnClickListener(this);
+
         mBtnClearAll.setOnClickListener(this);
 
-        mAlphaBar.setMax((ALPHA_MAX - ALPHA_MIN) / ALPHA_STEP);
+        /*mAlphaBar.setMax((ALPHA_MAX - ALPHA_MIN) / ALPHA_STEP);
         mAlphaBar.setProgress(mFreeDrawView.getPaintAlpha());
-        mAlphaBar.setOnSeekBarChangeListener(this);
+        mAlphaBar.setOnSeekBarChangeListener(this);*/
 
-        mThicknessBar.setMax((THICKNESS_MAX - THICKNESS_MIN) / THICKNESS_STEP);
-        mThicknessBar.setProgress((int) mFreeDrawView.getPaintWidth());
-        mThicknessBar.setOnSeekBarChangeListener(this);
+        //mThicknessBar.setMax((THICKNESS_MAX - THICKNESS_MIN) / THICKNESS_STEP);
+       // mThicknessBar.setProgress((int) mFreeDrawView.getPaintWidth());
+        //mThicknessBar.setOnSeekBarChangeListener(this);
+
         mSideView.setBackgroundColor(mFreeDrawView.getPaintColor());
+        mSideView1.setBackgroundColor(mFreeDrawView.getPaintColor());
     }
 
     @Override
@@ -127,7 +147,7 @@ public class ActivityDraw extends AppCompatActivity
     public void onClick(View v) {
         int id = v.getId();
 
-        if (id == mBtnRandomColor.getId()) {
+        /*if (id == mBtnRandomColor.getId()) {
             changeColor();
         }
 
@@ -139,7 +159,7 @@ public class ActivityDraw extends AppCompatActivity
         if (id == mBtnRedo.getId()) {
             mFreeDrawView.redoLast();
             Log.i("pintando", "redoLast");
-        }
+        }*/
 
         if (id == mBtnClearAll.getId()) {
             mFreeDrawView.undoAll();
@@ -149,7 +169,7 @@ public class ActivityDraw extends AppCompatActivity
 
     // SliderListener
     @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+    /*public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (seekBar.getId() == mThicknessBar.getId()) {
             mFreeDrawView.setPaintWidthDp(THICKNESS_MIN + (progress * THICKNESS_STEP));
         } else {
@@ -165,9 +185,9 @@ public class ActivityDraw extends AppCompatActivity
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
-    }
+    }*/
 
-    @Override
+
     public void onBackPressed() {
         if (mImgScreen.getVisibility() == View.VISIBLE) {
             mMenu.findItem(R.id.menu_screen).setVisible(true);
@@ -186,12 +206,12 @@ public class ActivityDraw extends AppCompatActivity
     // PathRedoUndoCountChangeListener.
     @Override
     public void onUndoCountChanged(int undoCount) {
-        mTxtUndoCount.setText(String.valueOf(undoCount));
+        //mTxtUndoCount.setText(String.valueOf(undoCount));
     }
 
     @Override
     public void onRedoCountChanged(int redoCount) {
-        mTxtRedoCount.setText(String.valueOf(redoCount));
+        //mTxtRedoCount.setText(String.valueOf(redoCount));
     }
 
     // PathDrawnListener
@@ -217,10 +237,15 @@ public class ActivityDraw extends AppCompatActivity
         mImgScreen.setVisibility(View.VISIBLE);
 
         mImgScreen.setImageBitmap(draw);
+
+        Save imageSave =new Save(getApplication().getApplicationContext(), draw);
     }
 
     @Override
     public void onDrawCreationError() {
         Toast.makeText(this, "Error, cannot create bitmap", Toast.LENGTH_SHORT).show();
     }
+
 }
+
+

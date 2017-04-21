@@ -16,34 +16,15 @@ import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 
-
-
-//mio
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.media.MediaScannerConnection;
-import android.net.Uri;
-import android.os.Environment;
-import android.util.Log;
-import android.widget.Toast;
-
-/**
- * Created by Riccardo Moro on 9/10/2016.
- */
 public class FreeDrawView extends View implements View.OnTouchListener {
     private static final String TAG = FreeDrawView.class.getSimpleName();
 
@@ -367,6 +348,7 @@ public class FreeDrawView extends View implements View.OnTouchListener {
      */
     public void setPathRedoUndoCountChangeListener(PathRedoUndoCountChangeListener listener) {
         mPathRedoUndoCountChangeListener = listener;
+        Log.i("Escuchando","Escuchando");
     }
 
     /**
@@ -525,6 +507,7 @@ public class FreeDrawView extends View implements View.OnTouchListener {
 
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             notifyPathStart();
+            Log.i("Escuchando","Escuchando 1");
         }
         if (getParent() != null) {
             getParent().requestDisallowInterceptTouchEvent(true);
@@ -672,6 +655,8 @@ public class FreeDrawView extends View implements View.OnTouchListener {
                         mWidth, mHeight, Bitmap.Config.ARGB_8888);
                 mCanvas = new Canvas(mBitmap);
 
+
+
             } catch (Exception e) {
                 e.printStackTrace();
                 cancel(true);
@@ -697,87 +682,11 @@ public class FreeDrawView extends View implements View.OnTouchListener {
 
             if (mListener != null) {
                 mListener.onDrawCreated(mBitmap);
-                Log.i("pintando","doInBackground 0");
-                Save imageSave =new Save();
-                imageSave.SaveImage(context, mBitmap);
+
             }
         }
     }
 
 
-    public class Save {
-        private Context TheThis;
-        private String NameOfFolder = "/prueba";
-        private String NameOfFile   = "APaintImage";
 
-        public void SaveImage(Context context,Bitmap ImageToSave){
-            context =this.TheThis;
-            String file_path = Environment.getExternalStorageDirectory().getAbsolutePath()+NameOfFolder;
-            Log.i("pintando",file_path);
-            String CurrentDateAndTime= getCurrentDateAndTime();
-            File dir = new File(file_path);
-
-            if(!dir.exists()){
-                dir.mkdirs();
-
-            }
-
-            File file = new File(dir, NameOfFile +CurrentDateAndTime+ ".jpg");
-
-            try {
-                FileOutputStream fOut = new FileOutputStream(file);
-                ImageToSave.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
-                Log.i("pintando","existe 1");
-                fOut.flush();
-                fOut.close();
-                //MakeSureFileWasCreatedThenMakeAvabile(file);
-                //AbleToSave();
-
-            }
-            catch (FileNotFoundException e) {
-                Log.i("pintando","existe 12");
-                //UnableToSave();
-            }
-            catch (IOException e){
-                Log.i("pintando","existe 13");
-                //UnableToSave();
-            }
-
-        }
-
-
-
-        private void MakeSureFileWasCreatedThenMakeAvabile(File file) {
-            MediaScannerConnection.scanFile(TheThis,
-                    new String[] { file.toString() }, null,
-                    new MediaScannerConnection.OnScanCompletedListener() {
-                        public void onScanCompleted(String path, Uri uri) {
-                            Log.e("ExternalStorage", "Scanned " + path + ":");
-                            Log.e("ExternalStorage", "-> uri=" + uri);
-
-                        }
-                    });
-
-        }
-
-
-
-        private String getCurrentDateAndTime() {
-            Calendar c = Calendar.getInstance();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-            String formattedDate = df.format(c.getTime());
-            return formattedDate;
-        }
-
-
-        private void UnableToSave() {
-            Toast.makeText(TheThis, "Picture cannot to gallery", Toast.LENGTH_SHORT).show();
-
-        }
-
-        private void AbleToSave() {
-            Toast.makeText(context, "Picture saved be saved", Toast.LENGTH_SHORT).show();
-
-        }
-    }
 }

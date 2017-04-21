@@ -22,10 +22,10 @@ public class ActivityChooser extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_chooser);
         Log.i("prueba","prueba");
         mBtnDraw = (Button) findViewById(R.id.draw_sample);
-        mBtnScrollable = (Button) findViewById(R.id.scrollable_sample);
+        //mBtnScrollable = (Button) findViewById(R.id.scrollable_sample);
 
         mBtnDraw.setOnClickListener(this);
-        mBtnScrollable.setOnClickListener(this);
+        //mBtnScrollable.setOnClickListener(this);
     }
 
     @Override
@@ -36,8 +36,8 @@ public class ActivityChooser extends AppCompatActivity implements View.OnClickLi
             startActivity(new Intent(this, ActivityDraw.class));
         }
 
-        if (id == mBtnScrollable.getId()) {
+        /*if (id == mBtnScrollable.getId()) {
             startActivity(new Intent(this, ActivityScrollable.class));
-        }
+        }*/
     }
 }

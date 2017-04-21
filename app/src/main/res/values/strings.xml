@@ -1,7 +1,29 @@
 <resources>
-    <string name="app_name">FreeDrawSample</string>
+    <string name="app_name">Digital Sign</string>
     <string name="show_screenshot">Take Screenshot</string>
-    <string name="signature_hint">First and last name</string>
-    <string name="age_hint">Age</string>
-    <string name="signature_label">Insert your signature here</string>
+    <string name="name_organitaion">Nombre de la organizacion</string>
+    <string name="email_organitation">Email Organizacion</string>
+    <string name="information_additional">Informacion adicional</string>
+    <string name="signature_label">Inserta tu firma here</string>
+    <string name="description_label">Descripcion:</string>
+    <string name="organization_label">Inserta la informacion de la empresa aqui</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+        id est laborum.</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 </resources>
