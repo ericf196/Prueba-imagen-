@@ -3,6 +3,9 @@
     <string name="show_screenshot">Take Screenshot</string>
     <string name="name_organitaion">Nombre de la organizacion</string>
     <string name="email_organitation">Email Organizacion</string>
+    <string name="login_user">User</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Ingresar</string>
     <string name="information_additional">Informacion adicional</string>
     <string name="signature_label">Inserta tu firma here</string>
     <string name="description_label">Descripcion:</string>
@@ -26,4 +29,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@color/white"
-    tools:context="com.rm.freedrawsample.ActivityDraw">
+    tools:context="com.rm.Sign.ActivityDraw">
 
     <ImageView
         android:id="@+id/img_screen"

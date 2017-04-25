@@ -1,15 +1,7 @@
-package com.rm.freedrawsample;
+package com.rm.Sign;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.media.MediaScannerConnection;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -17,21 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rm.freedrawview.FreeDrawView;
 import com.rm.freedrawview.PathDrawnListener;
 import com.rm.freedrawview.PathRedoUndoCountChangeListener;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class ActivityDraw extends AppCompatActivity
         implements View.OnClickListener, /*SeekBar.OnSeekBarChangeListener,*/

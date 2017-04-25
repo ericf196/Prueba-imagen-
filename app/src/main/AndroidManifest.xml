@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rm.freedrawsample">
+    package="com.rm.Sign">
 
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -17,29 +17,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ActivityChooser"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity
-            android:name=".ActivityDraw"
-            android:screenOrientation="fullSensor" />
-        <activity
-            android:name=".ActivityScrollable"
-            android:screenOrientation="userPortrait" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login">
-
-        </activity>
-        <activity android:name=".FormActivity"
+            android:name="com.rm.Sign.ActivityChooser"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
+        </activity>
+        <activity
+            android:name="com.rm.Sign.ActivityDraw"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.rm.Sign.ActivityScrollable"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name="com.rm.Sign.LoginActivity"
+            android:label="@string/title_activity_login">
+
+
+
+        </activity>
+        <activity android:name="com.rm.Sign.FormActivity"
+            android:screenOrientation="portrait">
+
 
         </activity>
     </application>

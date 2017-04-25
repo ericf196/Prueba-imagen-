@@ -1,4 +1,4 @@
-package com.rm.freedrawsample;
+package com.rm.Sign;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

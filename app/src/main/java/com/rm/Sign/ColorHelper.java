@@ -1,4 +1,4 @@
-package com.rm.freedrawsample;
+package com.rm.Sign;
 
 import android.content.Context;
 import android.content.res.TypedArray;
